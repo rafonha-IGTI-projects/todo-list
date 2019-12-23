@@ -1,0 +1,30 @@
+h1 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+li {
+    list-style-type: none;
+}
+
+input {
+    width: 100%;
+    max-width: 90%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+button {
+    background: none;
+    border: none;
+    width: 100%;
+    max-width: 5%;
+}
