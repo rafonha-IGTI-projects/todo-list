@@ -52,6 +52,28 @@ function activateInput() {
         }
     }
 
+    function handleClick() {
+        var hasText = !!inputTask.value && inputTask.value.trim() !== '';
+
+        if (!hasText) {
+            clearInput();
+            return;
+          }
+
+        var newTask = inputTask.value;
+        if (isEditing) {
+            editInput(newTask);
+        } else {
+            insertTask(newTask);
+        }
+
+        render();
+        isEditing = false;
+        clearInput();
+    }
+
+    addTaskButton.addEventListener('click', handleClick);
+
     inputTask.addEventListener('keyup', handleTyping);
     inputTask.focus();
 }
@@ -72,6 +94,23 @@ function render() {
         return button;
     }
 
+    function createEditButton(task,index) {
+        function editTask() {
+            inputTask.value = task;
+            inputTask.focus();
+            isEditing = true;
+            currentIndex = index;
+        }
+        
+        var button = document.createElement('button');
+        button.classList.add('editButton');
+        button.textContent =  'Edit';
+
+        button.addEventListener('click', editTask);
+
+        return button;
+    }
+
     function createSpan(task, index) {
         function editTask() {
             inputTask.value = task;
@@ -84,10 +123,10 @@ function render() {
         span.classList.add('clickable');
         span.textContent = task;
         span.addEventListener('click', editTask);
-
+        
         return span;
     }
-
+    
     var listContainer = document.querySelector('#listContainer');
     listContainer.innerHTML = '';
     
@@ -97,10 +136,12 @@ function render() {
         var currentTask = globalTasks[i];
         
         var li = document.createElement('li');
+        var editButton = createEditButton(currentTask, i);
         var deleteButton = createDeleteButton(i);
         var span = createSpan(currentTask, i);
         
         li.appendChild(span);
+        li.appendChild(editButton);
         li.appendChild(deleteButton);
 
         ul.appendChild(li);
