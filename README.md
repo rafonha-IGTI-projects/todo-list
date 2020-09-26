@@ -11,4 +11,4 @@ No Installation needed, only requirement is a browser so you can open the applic
 Add, delete and edit tasks in the task list.
 
 ## Improvements
-Style is pretty bad, perhaps use a CSS framework or just it if a better look lol.
+Style is pretty bad, perhaps use a CSS framework or just give it a better look lol.
